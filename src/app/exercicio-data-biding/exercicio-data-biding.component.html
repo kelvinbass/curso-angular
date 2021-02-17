@@ -1,0 +1,19 @@
+<app-exercicio-contador
+    [valor]="10"
+    (valorMudou)="onValorAtualizadoNoContador($event)"
+></app-exercicio-contador>
+
+<hr>
+
+
+<button (click)="botaoClicado()">Me clique</button><br><br>
+
+<button (click)="onClickBotaoEmissor($event)">Emitir Clique</button><br><br>
+
+<hr>
+<input type="text" (keyup)="onKeyUp($event)"><br>
+
+<p>Valor atual: {{valorAtual}} </p>
+
+<hr>
+<img [src] ="imageURL" >
