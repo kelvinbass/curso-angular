@@ -1,15 +1,17 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-exercicio-data-biding',
   templateUrl: './exercicio-data-biding.component.html',
   styleUrls: ['./exercicio-data-biding.component.scss']
 })
-export class ExercicioDataBidingComponent implements OnInit {
+export class ExercicioDataBidingComponent {
   
   valorAtual: string = '';
 
   @Output() clicado = new EventEmitter();
+
+  valorContador = 10;
   
   botaoClicado() {
     alert('Clicou!')
@@ -25,14 +27,12 @@ export class ExercicioDataBidingComponent implements OnInit {
 
  imageURL = 'https://okawalivros.com.br/wp-content/uploads/2017/06/historia-de-lobos-okawalivros-1080x675.jpg'
 
-  ngOnInit(): void {
-  }
-
   eventoRecebido($event) {
     console.log('AppComponent: EVENTO RECEBIDO!', $event)
   }
   
-  onValorAtualizadoNoContador(novoValor){
+  onValorAtualizadoNoContador(novoValor:any){
+    this.valorContador = novoValor;
     console.log('onValorAtualizadoNoContador: ', novoValor)
   }
 }

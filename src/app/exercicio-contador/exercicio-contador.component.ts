@@ -8,16 +8,16 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ExercicioContadorComponent {
 
-  @Input() valor = 10;
-  @Output() valorMudou = new EventEmitter();
+  @Input() valor = 0;
+  @Output() valorChange = new EventEmitter();
 
   incrementar() {
     this.valor = this.valor +1;
-    this.valorMudou.emit();
+    this.valorChange.emit(this.valor);
   }
 
   decrementar() {
     this.valor = this.valor -1;
-    this.valorMudou.emit(this.valor);
+    this.valorChange.emit(this.valor);
   }
 }

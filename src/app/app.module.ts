@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { ExercicioDataBidingComponent } from './exercicio-data-biding/exercicio-data-biding.component';
 import { ExercicioContadorComponent } from './exercicio-contador/exercicio-contador.component';
+import { ExercicioDiretivasComponent } from './exercicio-diretivas/exercicio-diretivas.component';
+import { ExericioNgclassComponent } from './exericio-ngclass/exericio-ngclass.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ExercicioContadorComponent } from './exercicio-contador/exercicio-conta
     FooterComponent,
     ExercicioDataBidingComponent,
     ExercicioContadorComponent,
+    ExercicioDiretivasComponent,
+    ExericioNgclassComponent,
   ],
   imports: [
     BrowserModule,
