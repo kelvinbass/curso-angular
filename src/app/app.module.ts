@@ -1,15 +1,21 @@
-import { NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { ExercicioContadorComponent } from './shared/components/exercicio-contador/exercicio-contador.component';
+import { ExercicioDataBidingComponent } from './shared/components/exercicio-data-biding/exercicio-data-biding.component';
+import { ExercicioDiretivasComponent } from './shared/components/exercicio-diretivas/exercicio-diretivas.component';
+import { ExerciciosPipesComponent } from './shared/components/exercicios-pipes/exercicios-pipes.component';
+import { ExericioNgclassComponent } from './shared/components/exericio-ngclass/exericio-ngclass.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 import { HomeComponent } from './home/home.component';
-import { FooterComponent } from './footer/footer.component';
-import { ExercicioDataBidingComponent } from './exercicio-data-biding/exercicio-data-biding.component';
-import { ExercicioContadorComponent } from './exercicio-contador/exercicio-contador.component';
-import { ExercicioDiretivasComponent } from './exercicio-diretivas/exercicio-diretivas.component';
-import { ExericioNgclassComponent } from './exericio-ngclass/exericio-ngclass.component';
+
+
+registerLocaleData(localePt, 'pt')
 
 @NgModule({
   declarations: [
@@ -21,12 +27,16 @@ import { ExericioNgclassComponent } from './exericio-ngclass/exericio-ngclass.co
     ExercicioContadorComponent,
     ExercicioDiretivasComponent,
     ExericioNgclassComponent,
+    ExerciciosPipesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{
+    provide:LOCALE_ID,
+    useValue: 'pt'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

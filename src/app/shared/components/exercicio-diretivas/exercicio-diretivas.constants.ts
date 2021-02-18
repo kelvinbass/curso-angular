@@ -68,3 +68,5 @@ export const MEMES_AGRUPADOS_POR_CATEGORIA = [{
       imagemURL: '/outros-5.jpg'
     }]
   }];
+
+  
