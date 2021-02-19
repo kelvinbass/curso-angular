@@ -8,7 +8,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class ExercicioDataBidingComponent {
   
   valorAtual: string = '';
-
+  
+  imageURL = 'https://okawalivros.com.br/wp-content/uploads/2017/06/historia-de-lobos-okawalivros-1080x675.jpg'
+  
   @Output() clicado = new EventEmitter();
 
   valorContador = 10;
@@ -25,7 +27,6 @@ export class ExercicioDataBidingComponent {
     this.valorAtual = (<HTMLInputElement> event.target).value;
   }
 
- imageURL = 'https://okawalivros.com.br/wp-content/uploads/2017/06/historia-de-lobos-okawalivros-1080x675.jpg'
 
   eventoRecebido($event) {
     console.log('AppComponent: EVENTO RECEBIDO!', $event)
