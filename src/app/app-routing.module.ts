@@ -8,13 +8,13 @@ import { NaoEncontradoComponent } from './nao-encontrado/nao-encontrado.componen
 
 const routes: Routes = [{
   path: 'home',
-  component: HomeComponent
+  component: HomeComponent,
 }, {
   path: 'login',
-  component: LoginComponent
+  component: LoginComponent,
 }, {
   path: 'extrato',
-  component: ExtratoComponent
+  component: ExtratoComponent,
 }, {
   path: '',
   redirectTo: 'home',

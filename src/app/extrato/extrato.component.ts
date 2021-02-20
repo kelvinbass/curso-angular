@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Transacao } from './extrato.interface';
 import { ExtratoService } from './extrato.service';
+
 
 @Component({
   selector: 'app-extrato',
@@ -9,14 +11,27 @@ import { ExtratoService } from './extrato.service';
 })
 export class ExtratoComponent implements OnInit {
 
-  transacoes = [];
+  transacoes: Transacao[];
 
+  estaCarregando: boolean;
+  erroNoCarregamento: boolean;
+  
   constructor( 
     private extratoService: ExtratoService
   ) {}
 
   ngOnInit() {
-    this.transacoes = this.extratoService.getTransacoes();
+    this.estaCarregando = true;
+    this.extratoService.getTransacoes()
+      .subscribe(
+        response => {
+        this.estaCarregando = false;
+        this.transacoes = response;
+      },
+       error => {
+        this.erroNoCarregamento = true;
+        this.estaCarregando = false;
+      });
   }
 
 }
