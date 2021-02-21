@@ -1,36 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize, take } from 'rxjs/operators';
 
-import { Transacao } from './extrato.interface';
-import { ExtratoService } from './extrato.service';
-
+import { Contato } from './contatos.interface';
+import { ContatoService } from './contatos.service';
 
 @Component({
-  selector: 'app-extrato',
-  templateUrl: './extrato.component.html',
-  styleUrls: ['./extrato.component.scss']
+  selector: 'app-contatos',
+  templateUrl: './contatos.component.html',
+  styleUrls: ['./contatos.component.scss']
 })
-export class ExtratoComponent implements OnInit {
+export class ContatosComponent implements OnInit {
 
-  transacoes: Transacao[]; //array criado atraves da extrato.interface
+  contatos: Contato[];
 
   estaCarregando: boolean;
   erroNoCarregamento: boolean;
   page = 1;
-  
-  
-  constructor(private extratoService: ExtratoService) { }
 
-  ngOnInit() {
-    this.carregarExtrato();
+
+  constructor( private contatosService: ContatoService) { }
+
+  ngOnInit(): void {
+    this.carregarContato();
   }
 
-  carregarExtrato() {
+  carregarContato() {
     this.estaCarregando = true;
 
     const page = 1;
 
-    this.extratoService.getTransacoes(this.page) // paginar dados
+    this.contatosService.getContato(this.page) // paginar dados
       .pipe(
         take(1), // resolve o problema de meromy link apos o subscribe ele finaliza a escuta do observable 
         finalize(() => this.estaCarregando = false) //operador para simplificar a função onSuccess e onError 
@@ -41,8 +40,8 @@ export class ExtratoComponent implements OnInit {
   }
 
 
-  onSuccess(response: Transacao[]) {
-    this.transacoes = response;
+  onSuccess(response: Contato[]) {
+    this.contatos = response;
   }
 
   onError(error: any) {
@@ -51,11 +50,13 @@ export class ExtratoComponent implements OnInit {
     
   paginaAnterior() {
     this.page --;
-    this.carregarExtrato();
+    this.carregarContato();
   }
 
   proximaPagina() {
     this.page ++;
-    this.carregarExtrato();
+    this.carregarContato();
   }
 }
+
+

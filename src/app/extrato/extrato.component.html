@@ -1,28 +1,33 @@
-<div class="container text-center p-5">
-
+<div class="container text-center p-5">  
     <div class="spinner-border" role="status" *ngIf="estaCarregando">
         <span class="sr-only">Loading...</span>
     </div>
-
+    
     <div *ngIf="erroNoCarregamento">
         <h2>Erro no carregamento!</h2>
     </div>
-
-    <table class="table table-hover" *ngIf="!estaCarregando && !erroNoCarregamento">
-        <tr>
-            <th>ID</th>
-            <th>Data</th>
-            <th>Descrição</th>
-            <th>Valor</th>
-            <th>Categoria</th>
-        </tr>
+    
+    <div *ngIf="!estaCarregando && !erroNoCarregamento">
+        <button (click)="paginaAnterior()" [disabled]="page === 1" class="btn btn-primary">Página Anterior</button>
+        <p>Página atual: {{ page }}</p>
+        <button (click)="proximaPagina()" [disabled]="page === 3" class="btn btn-primary">Proxíma Página</button><br><br>
         
-        <tr *ngFor="let transacao of transacoes">
-            <td> {{transacao.id}} </td>
-            <td> {{transacao.data | date}} </td>
-            <td> {{transacao.descricao}} </td>
-            <td> {{transacao.valor | currency:'BRL'}} </td>
-            <td> {{transacao.categoria}} </td>
-        </tr>
-    </table>
+        <table class="table table-hover" > 
+            <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Categoria</th>
+            </tr>
+            
+            <tr *ngFor="let transacao of transacoes">
+                <td> {{transacao.id}} </td>
+                <td> {{transacao.data | date}} </td>
+                <td> {{transacao.descricao}} </td>
+                <td> {{transacao.valor | currency:'BRL'}} </td>
+                <td> {{transacao.categoria}} </td>
+            </tr>
+        </table>
+    </div>
 </div>

@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  title = 'Seja bem-vindo! =)';
+  title = 'Curso Angular';
 
 }
