@@ -1,5 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
+
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +18,20 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
   
-  constructor() { }
+  estaCarregando: boolean;
+  erroNoLogin: boolean;
+  
+  constructor(
+    private loginService: LoginService,
+    private router: Router,   
+  ) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(form) {
+    this.erroNoLogin = false;
+    
     if (!form.valid) {
       form.controls.email.markAsTouched();
       form.controls.password.markAsTouched();
@@ -36,9 +48,31 @@ export class LoginComponent implements OnInit {
     
       return;
     }
+    this.login();
   }
 
-  exibeErro(nomeControle: string, form: FormGroup) { //função generica para login (email e passoword)
+  login() {
+    this.estaCarregando = true;
+    
+    this.loginService.logar(this.email, this.password)
+      .pipe(
+        finalize (() => this.estaCarregando = false)
+      )
+      .subscribe(
+        response => this.onSuccessLogin(),
+        error => this.onErrorLogin(),
+      );
+  }
+
+  onSuccessLogin() {
+    this.router.navigate(['home']);
+  }
+
+  onErrorLogin() {
+    this.erroNoLogin = true;
+  }
+
+  exibeErro(nomeControle: string, form: NgForm) { //função generica para login (email e passoword)
     if (!form.controls[nomeControle]) {
       return false;
     }
