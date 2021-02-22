@@ -9,7 +9,7 @@
     
     <div *ngIf="!estaCarregando && !erroNoCarregamento">
         <button (click)="paginaAnterior()" [disabled]="page === 1" class="btn btn-primary">Página Anterior</button>
-        <p>Página atual: {{ page }}</p>
+        <span>Página atual: {{ page }}</span>
         <button (click)="proximaPagina()" [disabled]="page === 3" class="btn btn-primary">Proxíma Página</button><br><br>
         
         <table class="table table-hover" > 

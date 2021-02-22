@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { finalize, take } from 'rxjs/operators';
 
 import { Contato } from './contatos.interface';
@@ -15,26 +16,27 @@ export class ContatosComponent implements OnInit {
 
   estaCarregando: boolean;
   erroNoCarregamento: boolean;
-  page = 1;
 
+  constructor(
+    private contatosService: ContatoService,
+    private router: Router, //service para poder prover essa navegação
+    ) { }
 
-  constructor( private contatosService: ContatoService) { }
-
-  ngOnInit(): void {
-    this.carregarContato();
+  ngOnInit() {
+    this.carregarContatos();
   }
 
-  carregarContato() {
+  carregarContatos() {
     this.estaCarregando = true;
+    this.erroNoCarregamento = false;
 
-    const page = 1;
-
-    this.contatosService.getContato(this.page) // paginar dados
+    this.contatosService.getContatos() // paginar dados
       .pipe(
-        take(1), // resolve o problema de meromy link apos o subscribe ele finaliza a escuta do observable 
-        finalize(() => this.estaCarregando = false) //operador para simplificar a função onSuccess e onError 
+        take(1),
+        finalize(() => this.estaCarregando = false)
       )
       .subscribe( //necessario esse termo para que possa finalizar a chamada HTTP
+          
         response => this.onSuccess(response),
        error => this.onError(error));
   }
@@ -46,17 +48,12 @@ export class ContatosComponent implements OnInit {
 
   onError(error: any) {
     this.erroNoCarregamento = true;
-    };
-    
-  paginaAnterior() {
-    this.page --;
-    this.carregarContato();
   }
 
-  proximaPagina() {
-    this.page ++;
-    this.carregarContato();
+  irParaDetalhes(idContato: string) {
+    this.router.navigate(['contatos/' + idContato])
   }
+  
 }
 
 

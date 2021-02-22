@@ -9,17 +9,30 @@ import { Contato } from './contatos.interface';
 })
 export class ContatoService {
   
-  API_URL2 = environment.API_URL; //variavel criada no app/environments
+  API_URL = environment.API_URL; //variavel criada no app/environments
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  getContato(page: number) {
-   return this.http.get<Contato[]>(this.API_URL2 + '/contatos', { 
-     params: {  // forma para paginar dados
-      _page: String(page),
-    }
-   }); 
+  getContatos() {
+   return this.http.get<Contato[]>(this.API_URL + '/contatos'); 
   }
+  
+  getContato(id: string) {
+    return this.http.get<Contato>(this.API_URL + '/contatos/' + id);
+  }
+
+  createContato(contato: Contato) {
+    return this.http.post<Contato[]>(this.API_URL + '/contatos', contato);
+  }
+
+  updateContato(id: string, contato: Contato) {
+    return this.http.put<Contato[]>(this.API_URL + '/contatos' + id, + contato);
+  }
+  
+  deleteContato(id:string) {
+    return this.http.delete<Contato[]>(this.API_URL + '/contatos' + id);
+  }
+
 }
