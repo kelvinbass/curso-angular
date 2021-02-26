@@ -1,17 +1,17 @@
 <header class="header">
-    <h1 class="header__title"> {{ title }}</h1>
+    <h1 class="header__title"> Área Logada</h1>
     <ul class="nav-bar-list">
         <li>
-          <a routerLink="home" routerLinkActive="ativado">Home</a>
+          <a routerLink="/home" routerLinkActive="ativado">Home</a>
         </li>
         <li>
-            <a routerLink="extrato" routerLinkActive="ativado">Extrato</a>
+            <a routerLink="/extrato" routerLinkActive="ativado">Extrato</a>
         </li>
         <li>
-            <a routerLink="login" routerLinkActive="ativado">Login</a>
+            <a routerLink="/contatos" routerLinkActive="ativado">Contatos</a>
         </li>
         <li>
-            <a routerLink="contatos" routerLinkActive="ativado">Contatos</a>
+            <button class="btn btn-primary" (click)="logout()">Logout</button>
         </li>
     </ul>
 </header>

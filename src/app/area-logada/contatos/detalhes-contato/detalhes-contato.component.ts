@@ -51,7 +51,7 @@ export class DetalhesContatoComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate([`contatos`]);
+    this.router.navigate(['contatos']);
     
   }
 }

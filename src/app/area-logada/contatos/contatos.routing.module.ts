@@ -3,11 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ContatosComponent } from './contatos.component';
 import { DetalhesContatoComponent } from './detalhes-contato/detalhes-contato.component';
+import { NovoContatoComponent } from './novo-contato/novo-contato.component';
 
 const routes: Routes = [{
     path: '',
     component: ContatosComponent
 }, {
+    path: 'novo',
+    component: NovoContatoComponent,
+}, {
+    
     path: 'id',
     component:DetalhesContatoComponent
 }];

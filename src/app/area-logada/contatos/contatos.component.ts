@@ -13,14 +13,13 @@ import { ContatoService } from './contatos.service';
 export class ContatosComponent implements OnInit {
 
   contatos: Contato[];
-
   estaCarregando: boolean;
   erroNoCarregamento: boolean;
 
   constructor(
     private contatosService: ContatoService,
     private router: Router, //service para poder prover essa navegação
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.carregarContatos();
@@ -36,9 +35,9 @@ export class ContatosComponent implements OnInit {
         finalize(() => this.estaCarregando = false)
       )
       .subscribe( //necessario esse termo para que possa finalizar a chamada HTTP
-          
+
         response => this.onSuccess(response),
-       error => this.onError(error));
+        error => this.onError(error));
   }
 
 
@@ -50,10 +49,30 @@ export class ContatosComponent implements OnInit {
     this.erroNoCarregamento = true;
   }
 
-  irParaDetalhes(idContato: string) {
-    this.router.navigate(['contatos/' + idContato])
+  irParaDetalhes() {
+    this.router.navigate(['contatos/id'])
   }
-  
+
+  deletarContato(idContato: number) {
+    this.contatosService.deleteContato(idContato.toString())
+      .subscribe(
+        response => this.onSuccessDeletarContato(idContato),
+        error => this.onErrorDeletarContato(),
+      );
+  }
+
+  onSuccessDeletarContato(idContato) {
+    this.contatos = this.contatos.filter(contatos => contatos.id !== idContato);  //deletar contato filtrando e mostrando apenas o que vc quiser
+  }
+
+  onErrorDeletarContato() {
+
+  }
+
+  novoContato() {
+    this.router.navigate(['contatos/novo']);
+  }
+
 }
 
 

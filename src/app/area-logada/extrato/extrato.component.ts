@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { finalize, take } from 'rxjs/operators';
 
 import { Transacao } from './extrato.interface';
@@ -19,7 +20,8 @@ export class ExtratoComponent implements OnInit {
   page = 1;
   
   
-  constructor(private extratoService: ExtratoService) { }
+  constructor(private extratoService: ExtratoService,
+  private router: Router,) { }
 
   ngOnInit() {
     this.carregarExtrato();

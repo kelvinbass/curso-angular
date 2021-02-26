@@ -1,4 +1,5 @@
 <div class="container text-center p-5">
+    <button class="btn btn-primary" (click)="novoContato()">Novo Contato</button><br><br>
     <div class="spinner-border" role="status" *ngIf="estaCarregando">
         <span class="sr-only">Loading...</span>
     </div>
@@ -8,6 +9,7 @@
         <button (click)="carregarContatos()"> Tentar novamente</button>
     </div>
     
+
     <div *ngIf="!estaCarregando && !erroNoCarregamento">
         <table class="table table-hover" > 
             <tr>
@@ -18,7 +20,8 @@
             <tr *ngFor="let contato of contatos">
                 <td>{{ contato.nome }}</td>
                 <td>
-                    <button class="btn btn-primary" (click)="irParaDetalhes(contato.id)">Ver detalhes</button>
+                    <button class="btn btn-primary m-1" (click)="irParaDetalhes(contato.id)">Ver detalhes</button>
+                    <button class="btn btn-danger m-1" (click)="irParaDetalhes(contato.id)">Deletar</button>
                 </td>
             </tr>
         </table>

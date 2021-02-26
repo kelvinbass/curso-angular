@@ -20,7 +20,7 @@ export class ContatoService {
   }
   
   getContato(id: string) {
-    return this.http.get<Contato>(this.API_URL + '/contatos/' + id);
+    return this.http.get<Contato>(this.API_URL + '/contatos/');
   }
 
   createContato(contato: Contato) {
