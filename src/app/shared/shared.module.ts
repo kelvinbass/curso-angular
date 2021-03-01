@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -9,6 +10,7 @@ import { ExerciciosPipesComponent } from './components/exercicios-pipes/exercici
 import { ExericioNgclassComponent } from './components/exericio-ngclass/exericio-ngclass.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 
@@ -35,5 +37,10 @@ import { HeaderComponent } from './components/header/header.component';
     ExericioNgclassComponent,
     ExerciciosPipesComponent,
   ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,   // a cada chamada HTTP o token sera verificado atras do interceptor
+    multi: true,
+  }]
 })
 export class SharedModule { }
